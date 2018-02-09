@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1074279256621",
+    "firebase_url": "https://crud-eca4f.firebaseio.com",
+    "project_id": "crud-eca4f",
+    "storage_bucket": "crud-eca4f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1074279256621:android:bc78ba18431464e7",
+        "android_client_info": {
+          "package_name": "generomuga.com.crud"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1074279256621-u9hgommu9cs91j0kl7s1tl1hnrqiml8t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "generomuga.com.crud",
+            "certificate_hash": "127a156f9c997aaa637cc17673b8467477bd6e47"
+          }
+        },
+        {
+          "client_id": "1074279256621-rb1ms9lvuiugrhgqpsdq44q9fc8he651.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDr-i1AQnfpjmiLIhhyZFIkYEIcknDAE-w"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1074279256621-rb1ms9lvuiugrhgqpsdq44q9fc8he651.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
