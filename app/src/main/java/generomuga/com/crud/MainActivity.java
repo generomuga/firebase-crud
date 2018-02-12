@@ -12,8 +12,13 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,10 +31,15 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
     private DatabaseReference mMessageRef;
 
+    private ArrayList mListMessage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //value
+        mListMessage = new ArrayList<>();
 
         //firebae
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -47,8 +57,30 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //display message
+        displayMessage();
     }
+
+    private void displayMessage(){
+        final CustomAdapter customAdapter = new CustomAdapter(mListMessage, getApplicationContext());
+
+        mMessageRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists() && dataSnapshot.getChildrenCount() > 0){
+                    mListMessage.clear();
+                    Message message1 = dataSnapshot.getValue(Message.class);
+                    mListMessage.add(message1);
+                    mList.setAdapter(customAdapter);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
 
     private void createMessage(){
         //values
