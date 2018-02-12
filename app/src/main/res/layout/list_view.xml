@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:text="Message"
-        android:textSize="21sp"
+        android:textSize="20sp"
         android:textColor="#000"
         android:textAlignment="textStart"
         android:gravity="start" />
@@ -17,17 +17,17 @@
     <Button
         android:id="@+id/buttonUpdate"
         android:layout_toLeftOf="@id/buttonDelete"
-        android:layout_width="100dp"
+        android:layout_width="110dp"
         android:layout_height="wrap_content"
-        android:text="Update"
+        android:text="UPDATE"
         android:textColor="#000"/>
 
     <Button
         android:id="@+id/buttonDelete"
         android:layout_alignParentRight="true"
-        android:layout_width="100dp"
+        android:layout_width="110dp"
         android:layout_height="wrap_content"
-        android:text="Delete"
+        android:text="DELETE"
         android:textColor="#000"/>
 
 
