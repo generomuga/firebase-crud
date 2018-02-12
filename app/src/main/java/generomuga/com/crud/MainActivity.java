@@ -81,7 +81,12 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                Toast.makeText(getApplicationContext(), dataSnapshot.getKey(), Toast.LENGTH_LONG).show();
+                mListMessage.clear();
+                if (dataSnapshot.exists() && dataSnapshot.getChildrenCount() > 0){
+                    Message message1 = dataSnapshot.getValue(Message.class);
+                    mListMessage.add(message1);
+                    mList.setAdapter(customAdapter);
+                }
             }
 
             @Override
