@@ -119,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), task.getException().toString(), Toast.LENGTH_LONG).show();
                 }
                 else{
+                    mMessage.setText(null);
                     //Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
                 }
             }
