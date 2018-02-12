@@ -85,10 +85,4 @@ public class CustomAdapter extends ArrayAdapter<Message>{
         });
     }
 
-    public void refreshEvents(ArrayList<Message> data) {
-        this.dataSet.clear();
-        this.dataSet.addAll(data);
-        notifyDataSetChanged();
-    }
-
 }
