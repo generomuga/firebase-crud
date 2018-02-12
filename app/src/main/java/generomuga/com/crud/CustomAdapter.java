@@ -24,7 +24,7 @@ import java.util.ArrayList;
 public class CustomAdapter extends ArrayAdapter<Message>{
 
     Context mContext;
-    ArrayList<Message> dataSet;
+    public static ArrayList<Message> dataSet;
     DatabaseReference mDatabase;
 
     private static class ViewHolder{
@@ -77,7 +77,7 @@ public class CustomAdapter extends ArrayAdapter<Message>{
             @Override
             public void onClick(View view) {
                 UpdateDialog updateDialog = new UpdateDialog();
-                updateDialog.showDialog(MainActivity.mActivity, message1.getMessage(), message1.getKey());
+                updateDialog.showDialog(MainActivity.mActivity, message1.getMessage(), message1.getKey(), position);
             }
         });
 

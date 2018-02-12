@@ -28,7 +28,7 @@ public class UpdateDialog {
     private Button mUpdate;
     private Button mCancel;
 
-    public void showDialog(Activity activity, String message, final String key){
+    public void showDialog(Activity activity, String message, final String key, final int position){
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
@@ -53,14 +53,14 @@ public class UpdateDialog {
         mUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                update(key, mMessage.getText().toString().trim());
+                update(key, mMessage.getText().toString().trim(), position);
             }
         });
 
         mDialog.show();
     }
 
-    private void update(String key, String newMessage){
+    private void update(final String key, final String newMessage, final int position){
         if (TextUtils.isEmpty(newMessage)){
             Toast.makeText(MainActivity.mActivity, "Empty message", Toast.LENGTH_LONG).show();
             return;
@@ -77,6 +77,10 @@ public class UpdateDialog {
                     Toast.makeText(MainActivity.mActivity, task.getException().toString(), Toast.LENGTH_LONG).show();
                 }
                 else{
+                    Message message1 = new Message();
+                    message1.setKey(key);
+                    message1.setMessage(newMessage);
+                    CustomAdapter.dataSet.set(position, message1);
                     mDialog.dismiss();
                 }
             }
