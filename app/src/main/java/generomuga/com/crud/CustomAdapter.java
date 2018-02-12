@@ -9,6 +9,12 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -16,6 +22,7 @@ public class CustomAdapter extends ArrayAdapter<Message>{
 
     Context mContext;
     ArrayList<Message> dataSet;
+    DatabaseReference mDatabase;
 
     private static class ViewHolder{
         TextView mMessage;
@@ -27,13 +34,15 @@ public class CustomAdapter extends ArrayAdapter<Message>{
         super(context, R.layout.list_view, data);
         this.dataSet = data;
         this.mContext = context;
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
     }
 
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-        Message message1 = getItem(position);
+        final Message message1 = getItem(position);
         final ViewHolder viewHolder;
 
         if (convertView == null){
@@ -53,6 +62,33 @@ public class CustomAdapter extends ArrayAdapter<Message>{
 
         viewHolder.mMessage.setText(message1.getMessage());
 
+        viewHolder.mDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                delete(message1.getKey());
+                dataSet.remove(dataSet.get(position));
+            }
+        });
+
         return convertView;
     }
+
+    private void delete(String key){
+        DatabaseReference messageRef = mDatabase.child("messages").child(key);
+        messageRef.removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (!task.isSuccessful()){
+                    Toast.makeText(getContext(), task.getException().toString(), Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+    }
+
+    public void refreshEvents(ArrayList<Message> data) {
+        this.dataSet.clear();
+        this.dataSet.addAll(data);
+        notifyDataSetChanged();
+    }
+
 }

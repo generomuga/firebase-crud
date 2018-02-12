@@ -64,15 +64,14 @@ public class MainActivity extends AppCompatActivity {
         final CustomAdapter customAdapter = new CustomAdapter(mListMessage, getApplicationContext());
 
         mListMessage.clear();
-
         mMessageRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 if (dataSnapshot.exists() && dataSnapshot.getChildrenCount() > 0){
                     Message message1 = dataSnapshot.getValue(Message.class);
-
                     mListMessage.add(message1);
                     mList.setAdapter(customAdapter);
+                    mList.deferNotifyDataSetChanged();
                 }
             }
 
@@ -83,12 +82,11 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {
-
+                mList.invalidateViews();
             }
 
             @Override
             public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
             }
 
             @Override
@@ -96,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
     }
 
     private void createMessage(){
