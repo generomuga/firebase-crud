@@ -1,8 +1,11 @@
 package generomuga.com.crud;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,6 +70,14 @@ public class CustomAdapter extends ArrayAdapter<Message>{
             public void onClick(View view) {
                 delete(message1.getKey());
                 dataSet.remove(dataSet.get(position));
+            }
+        });
+
+        viewHolder.mUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UpdateDialog updateDialog = new UpdateDialog();
+                updateDialog.showDialog(MainActivity.mActivity, message1.getMessage(), message1.getKey());
             }
         });
 
