@@ -9,6 +9,7 @@
         android:layout_height="wrap_content"
         android:text="Message"
         android:textSize="21sp"
+        android:textColor="#000"
         android:textAlignment="center"/>
 
     <Button
