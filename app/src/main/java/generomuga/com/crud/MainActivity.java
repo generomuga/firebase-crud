@@ -1,5 +1,6 @@
 package generomuga.com.crud;
 
+import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -33,10 +34,14 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList mListMessage;
 
+    public static Activity mActivity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mActivity = this;
 
         //value
         mListMessage = new ArrayList<>();
@@ -71,13 +76,11 @@ public class MainActivity extends AppCompatActivity {
                     Message message1 = dataSnapshot.getValue(Message.class);
                     mListMessage.add(message1);
                     mList.setAdapter(customAdapter);
-                    mList.deferNotifyDataSetChanged();
                 }
             }
 
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
             }
 
             @Override
