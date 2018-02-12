@@ -17,11 +17,20 @@
         android:layout_below="@id/editTextMessage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Send"/>
+        android:text="Create"/>
+
+
+    <TextView
+        android:id="@+id/textVIewRead"
+        android:layout_below="@id/buttonSend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="READ"/>
 
     <ListView
         android:id="@+id/listViewMessage"
-        android:layout_below="@id/buttonSend"
+        android:layout_below="@id/textVIewRead"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
 </RelativeLayout>
